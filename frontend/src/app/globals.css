@@ -1,33 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020617;
+  --background: #0a0a0a;
   --foreground: #e2e8f0;
-  --sol-green: #14F195;
-  --sol-purple: #9945FF;
-  --sol-dark: #0B0E17;
-  --sol-card: #0f172a;
+  --aegis-cyan: #06b6d4;
+  --threat-red: #ef4444;
+  --shield-green: #22c55e;
+  --warning-amber: #f59e0b;
+  --ai-purple: #a855f7;
+  --dark-slate: #0f172a;
+  --muted-text: #64748b;
   --sol-border: #1e293b;
-  --sol-muted: #64748b;
-  --sol-success: #22c55e;
-  --sol-error: #ef4444;
-  --sol-warning: #f59e0b;
-  --sol-glow-green: 0 0 20px rgba(20, 241, 149, 0.3);
-  --sol-glow-purple: 0 0 20px rgba(153, 69, 255, 0.3);
+  --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.3);
+  --glow-red: 0 0 20px rgba(239, 68, 68, 0.3);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-sol-green: var(--sol-green);
-  --color-sol-purple: var(--sol-purple);
-  --color-sol-dark: var(--sol-dark);
-  --color-sol-card: var(--sol-card);
+  --color-aegis-cyan: var(--aegis-cyan);
+  --color-threat-red: var(--threat-red);
+  --color-shield-green: var(--shield-green);
+  --color-warning-amber: var(--warning-amber);
+  --color-ai-purple: var(--ai-purple);
+  --color-dark-slate: var(--dark-slate);
+  --color-muted-text: var(--muted-text);
   --color-sol-border: var(--sol-border);
-  --color-sol-muted: var(--sol-muted);
-  --color-sol-success: var(--sol-success);
-  --color-sol-error: var(--sol-error);
-  --color-sol-warning: var(--sol-warning);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

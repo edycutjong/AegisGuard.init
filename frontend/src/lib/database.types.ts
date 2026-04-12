@@ -1,133 +1,128 @@
-export type SweepStatus =
-  | "queued"
-  | "cloning"
-  | "ast"
-  | "ai_loop"
-  | "testing"
-  | "pr_open"
-  | "complete"
-  | "failed";
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
 
-export type LogLevel = "info" | "success" | "error" | "warn" | "ai";
-
-export interface SweepRow {
-  id: string;
-  repo_url: string;
-  repo_name: string;
-  status: SweepStatus;
-  pr_url: string | null;
-  files_changed: number;
-  ast_fixes: number;
-  ai_fixes: number;
-  error_message: string | null;
-  started_at: string;
-  completed_at: string | null;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface LogRow {
-  id: string;
-  sweep_id: string;
-  level: LogLevel;
-  message: string;
-  created_at: string;
-}
-
-/** Composed type for the dashboard / detail views */
-export interface Sweep {
-  id: string;
-  repoUrl: string;
-  repoName: string;
-  status: SweepStatus;
-  prUrl: string | null;
-  filesChanged: number;
-  astFixes: number;
-  aiFixes: number;
-  logs: LogEntry[];
-  startedAt: string;
-  completedAt: string | null;
-}
-
-export interface LogEntry {
-  timestamp: string;
-  level: LogLevel;
-  message: string;
-}
-
-/** Transform DB rows → frontend shape */
-export function toSweep(row: SweepRow, logs: LogRow[]): Sweep {
-  return {
-    id: row.id,
-    repoUrl: row.repo_url,
-    repoName: row.repo_name,
-    status: row.status,
-    prUrl: row.pr_url,
-    filesChanged: row.files_changed,
-    astFixes: row.ast_fixes,
-    aiFixes: row.ai_fixes,
-    startedAt: row.started_at,
-    completedAt: row.completed_at,
-    logs: logs.map((l) => ({
-      timestamp: l.created_at,
-      level: l.level,
-      message: l.message,
-    })),
-  };
-}
-
-/** Insert types (id, timestamps are auto-generated) */
-export type SweepInsert = Omit<SweepRow, "id" | "created_at" | "updated_at"> & {
-  id?: string;
-  created_at?: string;
-  updated_at?: string;
-};
-
-export type LogInsert = Omit<LogRow, "id" | "created_at"> & {
-  id?: string;
-  created_at?: string;
-};
-
-/**
- * Minimal Supabase Database type for the client.
- * Only covers AegisGuard.init tables. Conforms to the GenericSchema shape
- * required by @supabase/supabase-js v2.103+.
- */
 export interface Database {
   public: {
     Tables: {
-      aegisguard-init_sweeps: {
-        Row: SweepRow;
-        Insert: SweepInsert;
-        Update: Partial<SweepRow>;
-        Relationships: [
-          {
-            foreignKeyName: "aegisguard-init_logs_sweep_id_fkey";
-            columns: ["id"];
-            isOneToOne: false;
-            referencedRelation: "aegisguard-init_logs";
-            referencedColumns: ["sweep_id"];
-          },
-        ];
-      };
-      aegisguard-init_logs: {
-        Row: LogRow;
-        Insert: LogInsert;
-        Update: Partial<LogRow>;
-        Relationships: [
-          {
-            foreignKeyName: "aegisguard-init_logs_sweep_id_fkey";
-            columns: ["sweep_id"];
-            isOneToOne: false;
-            referencedRelation: "aegisguard-init_sweeps";
-            referencedColumns: ["id"];
-          },
-        ];
-      };
-    };
-    Views: Record<string, never>;
-    Functions: Record<string, never>;
-    Enums: Record<string, never>;
-    CompositeTypes: Record<string, never>;
-  };
+      sessions: {
+        Row: {
+          id: string
+          session_hash: string
+          owner_address: string
+          owner_init_name: string | null
+          dapp_address: string
+          dapp_name: string | null
+          created_at: string
+          expires_at: string
+          is_active: boolean
+          tx_count: number
+          revoked_at: string | null
+          revoke_reason: string | null
+        }
+        Insert: {
+          id?: string
+          session_hash: string
+          owner_address: string
+          owner_init_name?: string | null
+          dapp_address: string
+          dapp_name?: string | null
+          created_at?: string
+          expires_at: string
+          is_active?: boolean
+          tx_count?: number
+          revoked_at?: string | null
+          revoke_reason?: string | null
+        }
+        Update: {
+          id?: string
+          session_hash?: string
+          owner_address?: string
+          owner_init_name?: string | null
+          dapp_address?: string
+          dapp_name?: string | null
+          created_at?: string
+          expires_at?: string
+          is_active?: boolean
+          tx_count?: number
+          revoked_at?: string | null
+          revoke_reason?: string | null
+        }
+      }
+      alerts: {
+        Row: {
+          id: string
+          session_id: string | null
+          threat_type: string
+          severity: string
+          details: Json
+          tx_hash: string | null
+          blocked: boolean
+          detected_at: string
+        }
+        Insert: {
+          id?: string
+          session_id?: string | null
+          threat_type: string
+          severity: string
+          details: Json
+          tx_hash?: string | null
+          blocked?: boolean
+          detected_at?: string
+        }
+        Update: {
+          id?: string
+          session_id?: string | null
+          threat_type?: string
+          severity?: string
+          details?: Json
+          tx_hash?: string | null
+          blocked?: boolean
+          detected_at?: string
+        }
+      }
+      revenue: {
+        Row: {
+          id: string
+          session_id: string | null
+          fee_amount: number
+          fee_token: string
+          tx_hash: string | null
+          captured_at: string
+        }
+        Insert: {
+          id?: string
+          session_id?: string | null
+          fee_amount: number
+          fee_token?: string
+          tx_hash?: string | null
+          captured_at?: string
+        }
+        Update: {
+          id?: string
+          session_id?: string | null
+          fee_amount?: number
+          fee_token?: string
+          tx_hash?: string | null
+          captured_at?: string
+        }
+      }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
 }

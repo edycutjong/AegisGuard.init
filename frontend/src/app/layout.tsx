@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Providers } from "@/components/Providers";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,22 +14,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AegisGuard.init — Zero-FP Solana Migration Engine",
+  title: "AegisGuard.init — AI-Powered Security Appchain",
   description:
-    "Autonomous AST codemods verified by an adversarial AI-compiler loop. Open live PRs with zero false positives.",
+    "Real-time interceptor for Initia auto-signing transactions. Captures malicious payloads with zero false positives.",
   metadataBase: new URL("https://aegisguard-init.vercel.app"),
   openGraph: {
-    title: "AegisGuard.init — Zero-FP Solana Migration Engine",
+    title: "AegisGuard.init — AI-Powered Security Appchain",
     description:
-      "Compiler-in-the-loop AI codemods that migrate @solana/web3.js to @solana/kit with zero false positives.",
+      "Real-time interceptor for Initia auto-signing transactions. Captures malicious payloads with zero false positives.",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AegisGuard.init — Zero-FP Solana Migration Engine",
+    title: "AegisGuard.init — AI-Powered Security Appchain",
     description:
-      "Compiler-in-the-loop AI codemods that migrate @solana/web3.js to @solana/kit with zero false positives.",
+      "Real-time interceptor for Initia auto-signing transactions. Captures malicious payloads with zero false positives.",
     images: ["/og-image.png"],
   },
   icons: {
@@ -48,7 +49,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground noise-overlay">
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );
