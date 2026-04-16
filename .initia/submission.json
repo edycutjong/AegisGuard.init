@@ -1,0 +1,20 @@
+{
+  "name": "AegisGuard.init",
+  "vision": "Sub-millisecond smart contract interceptor natively built for Initia execution environments. AegisGuard intercepts malicious transactions before state commits.",
+  "category": "Interwoven Applications",
+  "tracks": [
+    "Security",
+    "Infrastructure"
+  ],
+  "team": [
+    "edycutjong"
+  ],
+  "links": {
+    "github": "https://github.com/edycutjong/aegis-guard-init",
+    "video": "https://youtube.com/placeholder-demo",
+    "demo": "https://aegis-guard.vercel.app"
+  },
+  "contracts": {
+    "AegisGuard": "0x0000000000000000000000000000000000000000"
+  }
+}
