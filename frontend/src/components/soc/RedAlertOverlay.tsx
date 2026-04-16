@@ -16,17 +16,17 @@ export default function RedAlertOverlay({
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    if (!threat) {
-      setPhase(0);
-      return;
-    }
+    if (!threat) return;
     
-    // Simulate the interception lifecycle
-    const t1 = setTimeout(() => setPhase(1), 800);
-    const t2 = setTimeout(() => setPhase(2), 2000);
-    const t3 = setTimeout(() => setPhase(3), 3500);
+    let isMounted = true;
+    const t0 = setTimeout(() => { if (isMounted) setPhase(0); }, 0);
+    const t1 = setTimeout(() => { if (isMounted) setPhase(1); }, 800);
+    const t2 = setTimeout(() => { if (isMounted) setPhase(2); }, 2000);
+    const t3 = setTimeout(() => { if (isMounted) setPhase(3); }, 3500);
 
     return () => {
+      isMounted = false;
+      clearTimeout(t0);
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);

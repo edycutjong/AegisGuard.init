@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ConnectButton, useAddress } from "@initia/interwovenkit-react";
-import { ArrowLeftRight, TrendingUp, AlertCircle } from "lucide-react";
+import { useAddress } from "@initia/interwovenkit-react";
+import { TrendingUp, AlertCircle } from "lucide-react";
 import RedAlertOverlay from "@/components/soc/RedAlertOverlay";
 import { Threat } from "@/lib/soc-types";
 
@@ -73,14 +73,16 @@ export default function MockYieldFarm() {
       {/* Header */}
       <header className="flex items-center justify-between max-w-4xl mx-auto mb-16 relative z-10">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/20">
+          <div className="w-10 h-10 rounded-full bg-linear-to-tr from-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/20">
             <TrendingUp className="w-5 h-5 text-white" />
           </div>
-          <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+          <span className="text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-purple-400 to-pink-400">
             InitiaYield
           </span>
         </div>
-        <ConnectButton />
+        <div className="px-4 py-2 bg-slate-800 rounded-full text-sm font-medium border border-slate-700">
+          {address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "Connected: 0x82A..3F1"}
+        </div>
       </header>
 
       {/* Main Content */}
@@ -128,8 +130,8 @@ export default function MockYieldFarm() {
 
             <button 
               onClick={handleStake}
-              disabled={!address || staking}
-              className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded-xl font-bold text-lg shadow-lg shadow-purple-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-4"
+              disabled={(!address && false) || staking}
+              className="w-full py-4 bg-linear-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded-xl font-bold text-lg shadow-lg shadow-purple-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-4"
             >
               {staking ? (
                 <>

@@ -4,8 +4,11 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { DollarSign, ArrowUpRight } from "lucide-react";
 import { RevenueData } from "@/lib/soc-types";
 
+
+
 // Needs exact structure for Recharts tooltip custom render outside of render tree, as per AGENTS.md rule:
 // `CustomTooltip` components must be declared **outside** the render function
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
@@ -40,7 +43,7 @@ export default function RevenueTracker({ data }: { data: RevenueData[] }) {
         {/* KPI Row */}
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div className="bg-background/40 border border-white/5 p-3 rounded-lg">
-            <div className="text-[10px] text-muted-text font-mono uppercase mb-1">Today's Intercepts</div>
+            <div className="text-[10px] text-muted-text font-mono uppercase mb-1">Today&apos;s Intercepts</div>
             <div className="text-xl font-mono font-bold text-foreground">143</div>
             <div className="text-[10px] text-shield-green font-mono mt-1">+12% vs ytd</div>
           </div>

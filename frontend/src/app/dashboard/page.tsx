@@ -76,9 +76,9 @@ const mockRevenue: RevenueData[] = [
 ];
 
 export default function DashboardPage() {
-  const [sessions, setSessions] = useState<Session[]>(mockSessions);
-  const [threats, setThreats] = useState<Threat[]>(mockThreats);
-  const [revenue, setRevenue] = useState<RevenueData[]>(mockRevenue);
+  const [sessions] = useState<Session[]>(mockSessions);
+  const [threats] = useState<Threat[]>(mockThreats);
+  const [revenue] = useState<RevenueData[]>(mockRevenue);
   const [activeThreat, setActiveThreat] = useState<Threat | null>(null);
 
   // Example of triggering the RedAlertOverlay for demo purposes

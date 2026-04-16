@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Header from "@/components/Header";
+
 import SessionMonitor from "@/components/soc/SessionMonitor";
 import ThreatTimeline from "@/components/soc/ThreatTimeline";
 import RevenueTracker from "@/components/soc/RevenueTracker";
@@ -66,7 +66,12 @@ export default function SOCDashboard() {
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none" />
       
       {/* Top Header */}
-      <Header />
+      <header className="mb-8 border-b border-sol-border pb-4 flex items-center justify-between px-6 pt-6 relative z-10 w-full max-w-[1440px] mx-auto">
+        <div>
+          <h1 className="text-3xl font-orbitron font-bold tracking-tight text-white mb-1 uppercase">Aegis SOC Command</h1>
+          <p className="text-aegis-cyan font-mono text-sm">Real-time Initia Appchain Monitoring</p>
+        </div>
+      </header>
 
       {/* Main 3-Column Layout */}
       <main className="flex-1 w-full max-w-[1440px] mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-6 relative z-10">
@@ -111,7 +116,7 @@ export default function SOCDashboard() {
                       id: `t_${Date.now()}`,
                       timestamp: new Date().toISOString(),
                       type: data.threat_detected ? (data.reason.includes("flash loan") ? "Flash Loan Drain" : "Reentrancy Exploit") : "Reentrancy Exploit",
-                      severity: data.severity as any || "CRITICAL",
+                      severity: (data.severity as "CRITICAL" | "HIGH" | "MEDIUM" | "LOW") || "CRITICAL",
                       action: "withdraw()",
                       targetUser: "0xMockedHoneypot"
                     };

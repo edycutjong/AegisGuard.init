@@ -1,4 +1,4 @@
-import { InterwovenKitProvider } from '@initia/interwovenkit-react';
+
 
 export const initiaConfig = {
   projectId: process.env.NEXT_PUBLIC_INTERWOVENKIT_PROJECT_ID || 'PLACEHOLDER_WALLETCONNECT_ID',
