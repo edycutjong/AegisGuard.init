@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { ConnectButton, useAddress } from "@initia/interwovenkit-react";
 import { ArrowLeftRight, TrendingUp, AlertCircle } from "lucide-react";
+import RedAlertOverlay from "@/components/soc/RedAlertOverlay";
+import { Threat } from "@/lib/soc-types";
 
 export default function MockYieldFarm() {
   const address = useAddress();
   const [staking, setStaking] = useState(false);
   const [attackTriggered, setAttackTriggered] = useState(false);
+  const [activeThreat, setActiveThreat] = useState<Threat | null>(null);
 
   const handleStake = () => {
     setStaking(true);
@@ -36,11 +39,27 @@ export default function MockYieldFarm() {
       console.log("[AegisGuard] Heuristics engine response:", data);
       
       // The RedAlertOverlay on the main dashboard would ideally listen via websockets
-      // or global state in a real app. For the demo, we log the JSON payload
-      // that Supabase RT would propagate to the SOC dashboard.
+      // or global state in a real app. For the demo, we show it directly here:
+      setActiveThreat({
+        id: "demo-threat-1",
+        timestamp: new Date().toISOString(),
+        type: "Malicious Contract Upgrade",
+        severity: "CRITICAL",
+        action: "Simulated extraction of yield vault 0xYieldAggregator",
+        targetUser: address || "0xUNKNOWN"
+      });
       
     } catch (e) {
       console.error("AegisGuard Demo Error", e);
+      // Fallback for demo if backend is not running
+      setActiveThreat({
+        id: "demo-threat-fallback",
+        timestamp: new Date().toISOString(),
+        type: "Malicious Contract Upgrade",
+        severity: "CRITICAL",
+        action: "Simulated extraction of yield vault 0xYieldAggregator",
+        targetUser: address || "0xUNKNOWN"
+      });
     }
   };
 
@@ -140,6 +159,14 @@ export default function MockYieldFarm() {
           </div>
         </div>
       </main>
+
+      <RedAlertOverlay 
+        threat={activeThreat} 
+        onDismiss={() => {
+          setActiveThreat(null);
+          setAttackTriggered(false);
+        }} 
+      />
     </div>
   );
 }
