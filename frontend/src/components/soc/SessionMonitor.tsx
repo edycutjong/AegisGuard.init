@@ -1,7 +1,8 @@
 "use client";
 
-import { Activity, ShieldOff, CheckCircle2, Clock } from "lucide-react";
+import { Activity, ShieldOff, CheckCircle2, Clock, Loader2 } from "lucide-react";
 import { Session } from "@/lib/soc-types";
+import { useState } from "react";
 
 function formatTime(seconds: number) {
   const m = Math.floor(seconds / 60);
@@ -9,7 +10,19 @@ function formatTime(seconds: number) {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
-export default function SessionMonitor({ sessions }: { sessions: Session[] }) {
+export default function SessionMonitor({ sessions, onRevoke }: { sessions: Session[], onRevoke?: (id: string) => Promise<void> | void }) {
+  const [revokingId, setRevokingId] = useState<string | null>(null);
+
+  const handleRevoke = async (id: string) => {
+    if (!onRevoke) return;
+    setRevokingId(id);
+    try {
+      await onRevoke(id);
+    } finally {
+      setRevokingId(null);
+    }
+  };
+
   return (
     <div className="flex flex-col h-full bg-dark-slate/50 border border-sol-border rounded-xl overflow-hidden">
       <div className="p-4 border-b border-sol-border bg-dark-slate/80 flex items-center gap-2">
@@ -63,10 +76,17 @@ export default function SessionMonitor({ sessions }: { sessions: Session[] }) {
             {/* Action Bar */}
             <div className="mt-3 pt-3 border-t border-white/5 flex gap-2">
                <button 
-                 disabled={session.status === "REVOKED"}
-                 className="flex-1 py-1.5 bg-threat-red/10 hover:bg-threat-red/20 text-threat-red border border-threat-red/20 rounded text-[10px] font-mono font-bold uppercase transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                 disabled={session.status === "REVOKED" || revokingId === session.id}
+                 onClick={() => handleRevoke(session.id)}
+                 className="flex-1 py-1.5 flex items-center justify-center bg-threat-red/10 hover:bg-threat-red/20 text-threat-red border border-threat-red/20 rounded text-[10px] font-mono font-bold uppercase transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                >
-                 Revoke Auth
+                 {revokingId === session.id ? (
+                   <span className="flex items-center gap-2 px-1">
+                     <Loader2 className="w-3 h-3 animate-spin"/> REVOKING...
+                   </span>
+                 ) : (
+                   "Revoke Auth"
+                 )}
                </button>
             </div>
           </div>
