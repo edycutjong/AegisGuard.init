@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import RootLayout from './layout';
+import RootLayout, { metadata } from './layout';
 
 // Mock fonts since they error in JSDOM sometimes
 jest.mock('next/font/google', () => ({
@@ -15,5 +15,10 @@ describe('RootLayout', () => {
       </RootLayout>
     );
     expect(getByText('Test Child')).toBeInTheDocument();
+  });
+
+  it('exports valid metadata', () => {
+    expect(metadata).toBeDefined();
+    expect(metadata.title).toBe('AegisGuard.init — AI-Powered Security Appchain');
   });
 });
