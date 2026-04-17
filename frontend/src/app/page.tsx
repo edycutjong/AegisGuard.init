@@ -139,7 +139,7 @@ export default function SOCDashboard() {
                 }}
                 className="w-full py-2 bg-threat-red/10 hover:bg-threat-red/20 text-threat-red border border-threat-red/30 rounded font-mono text-sm font-bold tracking-wider transition-colors relative group overflow-hidden"
              >
-                <div className="absolute inset-0 bg-threat-red/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+                <div className="absolute inset-0 bg-threat-red/10 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
                 SIMULATE EXPLOIT
              </button>
 

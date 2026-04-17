@@ -29,26 +29,45 @@
 
 ## 🚀 Quick Start
 
-### 1. Smart Contracts
-Run within the local appchain:
-```bash
-cd contracts
-forge test
-forge script scripts/Deploy.s.sol --broadcast --rpc-url <INITIA_RPC> 
-```
+### 1. Environment Setup
+1. Copy `.env.example` to `.env.local` in the root of the project:
+   ```bash
+   cp .env.example .env.local
+   ```
+2. Open `.env.local` and populate your missing keys (Supabase, Reown/WalletConnect).
 
-### 2. Frontend SOC Dashboard
-```bash
-cd frontend
-npm install
-npm run dev
-```
+### 2. Local Smart Contract Deployment
+If the public testnet is down or you want to test the full stack locally, spin up a local node using Foundry.
+1. Install [Foundry](https://getfoundry.sh/) if you haven't already:
+   ```bash
+   curl -L https://foundry.paradigm.xyz | bash
+   foundryup
+   ```
+2. Start a local blockchain node in a separate terminal:
+   ```bash
+   anvil
+   ```
+3. Deploy the smart contract to your local node (using Anvil's default funded key):
+   ```bash
+   cd contracts
+   PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 forge script scripts/Deploy.s.sol:DeployScript --rpc-url http://127.0.0.1:8545 --broadcast
+   ```
+4. Copy the `AegisGuard Deployed Address` from the terminal output and paste it into `NEXT_PUBLIC_AEGIS_GUARD_ADDRESS` inside your `.env.local` file.
 
 ### 3. Backend Heuristics Engine
+Start the Python FastAPI indexer (which uses mock models for the demo flow):
 ```bash
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload --port 8000
+```
+
+### 4. Frontend SOC Dashboard
+Start the Next.js frontend:
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
 ---
