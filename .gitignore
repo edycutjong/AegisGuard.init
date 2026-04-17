@@ -9,3 +9,12 @@ __pycache__/
 *.pyo
 venv/
 .pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+.nosearch
+
+# Frontend (if not caught by frontend/.gitignore)
+frontend/coverage/
+frontend/.next/
+node_modules/

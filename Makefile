@@ -1,4 +1,4 @@
-.PHONY: help up down dev-frontend dev-backend local-node deploy-local clean
+.PHONY: help up down dev-frontend dev-backend local-node deploy-local clean test test-coverage ci
 
 help:
 	@echo "🛡️  AegisGuard.init Development Shortcuts"
@@ -12,6 +12,11 @@ help:
 	@echo "  make dev-backend   - Start the FastAPI engine on port 8000"
 	@echo "  make local-node    - Start the Anvil local blockchain on port 8545"
 	@echo "  make deploy-local  - Deploy AegisGuard.sol to the local Anvil node"
+	@echo ""
+	@echo "--- 🧪 Testing & CI ---"
+	@echo "  make test          - Run frontend tests"
+	@echo "  make test-coverage - Run frontend tests with coverage report"
+	@echo "  make ci            - Run full CI suite (lint, typecheck, test:coverage)"
 	@echo ""
 	@echo "--- 🧹 Utilities ---"
 	@echo "  make clean         - Remove node_modules and python caches"
@@ -39,6 +44,21 @@ local-node:
 
 deploy-local:
 	cd contracts && PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 forge script scripts/Deploy.s.sol:DeployScript --rpc-url http://127.0.0.1:8545 --broadcast
+
+# ==============================================================================
+# Testing & CI
+# ==============================================================================
+test:
+	cd frontend && npm run test
+	cd backend && pytest
+
+test-coverage:
+	cd frontend && npm run test:coverage
+	cd backend && pytest --cov=main --cov-report=term-missing
+
+ci:
+	cd frontend && npm run ci
+	cd backend && pytest --cov=main --cov-report=term-missing
 
 # ==============================================================================
 # Utility / Cleanup
