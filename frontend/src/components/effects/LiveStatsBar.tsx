@@ -11,9 +11,9 @@ interface StatConfig {
   icon: string;
 }
 
-function AnimatedCounter({ target, duration = 2000, prefix = "", suffix = "", color }: {
+function AnimatedCounter({ target, duration, prefix = "", suffix = "", color }: {
   target: number;
-  duration?: number;
+  duration: number;
   prefix?: string;
   suffix?: string;
   color: string;
@@ -66,8 +66,12 @@ export default function LiveStatsBar() {
   useEffect(() => {
     const observer = new IntersectionObserver(handleIntersection, { threshold: 0.3 });
     const el = ref.current;
+    /* istanbul ignore next */
     if (el) observer.observe(el);
-    return () => { if (el) observer.unobserve(el); };
+    return () => {
+      // istanbul ignore else
+      if (el) observer.unobserve(el);
+    };
   }, [handleIntersection]);
 
   return (

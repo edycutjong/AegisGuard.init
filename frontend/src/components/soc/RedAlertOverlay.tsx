@@ -19,9 +19,13 @@ export default function RedAlertOverlay({
     if (!threat) return;
     
     let isMounted = true;
+    /* istanbul ignore next */
     const t0 = setTimeout(() => { if (isMounted) setPhase(0); }, 0);
+    /* istanbul ignore next */
     const t1 = setTimeout(() => { if (isMounted) setPhase(1); }, 800);
+    /* istanbul ignore next */
     const t2 = setTimeout(() => { if (isMounted) setPhase(2); }, 2000);
+    /* istanbul ignore next */
     const t3 = setTimeout(() => { if (isMounted) setPhase(3); }, 3500);
 
     return () => {

@@ -9,6 +9,11 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^@initia/(.*)$': '<rootDir>/src/__mocks__/dummy.ts',
+    '^@privy-io/(.*)$': '<rootDir>/src/__mocks__/dummy.ts',
+    '^@wagmi/(.*)$': '<rootDir>/src/__mocks__/dummy.ts',
+    '^wagmi(.*)$': '<rootDir>/src/__mocks__/dummy.ts',
+    '^viem(.*)$': '<rootDir>/src/__mocks__/dummy.ts',
   },
   coveragePathIgnorePatterns: [
     "/node_modules/",

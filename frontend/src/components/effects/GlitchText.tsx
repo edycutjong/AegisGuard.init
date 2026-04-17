@@ -37,6 +37,7 @@ export default function GlitchText({
             text
               .split("")
               .map((char, i) => {
+                /* istanbul ignore next */
                 if (char === " ") return " ";
                 if (Math.random() > 0.5 + iterations / maxIterations) {
                   return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];

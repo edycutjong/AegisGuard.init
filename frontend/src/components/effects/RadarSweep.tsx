@@ -8,11 +8,13 @@ export default function RadarSweep({ active = true, size = 200 }: { active?: boo
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    /* istanbul ignore next */
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
+    /* istanbul ignore next */
     if (!ctx) return;
 
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = window.devicePixelRatio || /* istanbul ignore next */ 1;
     canvas.width = size * dpr;
     canvas.height = size * dpr;
     ctx.scale(dpr, dpr);

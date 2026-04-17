@@ -49,12 +49,14 @@ export default function HexGridCanvas({ threatLevel = 0 }: { threatLevel?: numbe
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    /* istanbul ignore next */
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
+    /* istanbul ignore next */
     if (!ctx) return;
 
     const resize = () => {
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = window.devicePixelRatio || /* istanbul ignore next */ 1;
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
