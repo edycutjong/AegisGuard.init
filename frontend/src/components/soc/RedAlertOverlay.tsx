@@ -92,7 +92,7 @@ export default function RedAlertOverlay({
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <div className="text-muted-text mb-1 uppercase text-xs">Target Session</div>
-                  <div className="text-foreground">{threat.targetUser}</div>
+                  <div className="text-foreground truncate">{threat.targetUser}</div>
                 </div>
                 <div>
                   <div className="text-muted-text mb-1 uppercase text-xs">Attack Vector</div>
