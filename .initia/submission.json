@@ -1,10 +1,19 @@
 {
-  "name": "AegisGuard.init",
+  "project_name": "AegisGuard.init",
+  "repo_url": "https://github.com/edycutjong/AegisGuard.init",
+  "commit_sha": "3ae711f9a5f222f7d37f97dccb2003ec903dd3c0",
+  "rollup_chain_id": "aegisguard-1",
+  "deployed_address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "vm": "evm",
+  "native_feature": "auto-signing",
+  "core_logic_path": "contracts/src/AegisGuard.sol",
+  "native_feature_frontend_path": "frontend/src/components/soc/SessionMonitor.tsx",
+  "demo_video_url": "https://youtu.be/WCdrjs3XEic",
   "vision": "Sub-millisecond smart contract interceptor natively built for Initia execution environments. AegisGuard intercepts malicious transactions before state commits.",
   "category": "Interwoven Applications",
   "tracks": [
-    "Security",
-    "Infrastructure"
+    "AI & Tooling",
+    "DeFi"
   ],
   "team": [
     "edycutjong"
@@ -15,6 +24,6 @@
     "demo": "https://aegisguard.edycu.dev"
   },
   "contracts": {
-    "AegisGuard": "0x0000000000000000000000000000000000000000"
+    "AegisGuard": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
   }
 }

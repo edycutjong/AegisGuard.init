@@ -21,3 +21,9 @@ node_modules/
 
 # Demo
 docs/demo/*
+
+# Foundry
+broadcast/
+cache/
+out/
+foundry.lock

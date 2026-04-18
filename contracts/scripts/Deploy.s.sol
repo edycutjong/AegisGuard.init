@@ -11,17 +11,14 @@ contract DeployScript is Script {
         // Use the Initia standard derivation path/RPC if configuring cast later
         vm.startBroadcast(deployerPrivateKey);
 
-        // Insurance fee minimum (e.g. 0.001 init)
-        uint256 requiredInsuranceFee = 0.001 ether;
-        
-        AegisGuard aegis = new AegisGuard(requiredInsuranceFee);
+        AegisGuard aegis = new AegisGuard();
 
         vm.stopBroadcast();
 
         // Output info for the frontend .env
         console.log("------------------------------------------");
         console.log("AegisGuard Deployed Address:", address(aegis));
-        console.log("Insurance Fee Target:", requiredInsuranceFee);
+        console.log("Insurance Fee:", aegis.insuranceFee());
         console.log("------------------------------------------");
     }
 }
