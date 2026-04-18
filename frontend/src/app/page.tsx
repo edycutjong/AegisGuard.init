@@ -57,16 +57,31 @@ export default function SOCDashboard() {
     async function loadDashboard() {
       try {
         const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
-        const res = await fetch(`${backendUrl}/api/dashboard`);
+        const res = await fetch(`${backendUrl}/api/dashboard`, { signal: AbortSignal.timeout(1500) });
         if (res.ok) {
           const data = await res.json();
           setSessions(data.sessions || []);
           setThreats(data.threats || []);
           setRevenue(data.revenue || []);
+          return;
         }
-      } catch (err) {
-        console.error("Failed to load dashboard data", err);
+      } catch (_err) {
+        console.warn("Backend unreachable. Falling back to Vercel Demo Mock Data.");
       }
+      
+      // Fallback Demo Data for Vercel Deployments
+      setSessions([
+        { id: "s_1", dappName: "InitiaSwap", address: "0x6A9...bF1", timeRemaining: 3600, txCount: 14, status: "SAFE", startTime: Date.now() - 100000 },
+        { id: "s_2", dappName: "Liquify Protocol", address: "0x2B9...8F1", timeRemaining: 1200, txCount: 3, status: "SAFE", startTime: Date.now() - 50000 },
+        { id: "s_4", dappName: "Initia Perps", address: "0x91F...E2C", timeRemaining: 1800, txCount: 8, status: "SUSPICIOUS", startTime: Date.now() - 30000 },
+        { id: "s_3", dappName: "Aave V3 (Initia)", address: "0x4FA...9D2", timeRemaining: 0, txCount: 42, status: "REVOKED", startTime: Date.now() - 200000 }
+      ]);
+      setThreats([
+        { id: "t_1", timestamp: new Date(Date.now()-2000).toISOString(), type: "Oracle Manipulation", severity: "HIGH", action: "swap()", targetUser: "0xInitiaRouter" },
+        { id: "t_2", timestamp: new Date(Date.now()-15000).toISOString(), type: "Flash Loan Drain", severity: "CRITICAL", action: "flash()", targetUser: "0xLiquifyPool" },
+        { id: "t_3", timestamp: new Date(Date.now()-45000).toISOString(), type: "Reentrancy Exploit", severity: "MEDIUM", action: "withdraw()", targetUser: "0xVault" }
+      ]);
+      setRevenue(Array.from({length: 10}, (_, i) => ({ time: new Date(Date.now() - (9-i)*10000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit', hour12: false}), fees: parseFloat((10 + Math.random()*5).toFixed(2)) })));
     }
     loadDashboard();
   }, []);
