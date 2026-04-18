@@ -24,8 +24,32 @@
 
 ## 📸 See it in Action
 
-<!-- Replace with a real GIF/screenshot of the SOC dashboard when available -->
+<!-- Main Hero / Full Dashboard -->
+https://github.com/user-attachments/assets/1fdccf92-7eb7-43f7-bd02-5f8ece7f14e8
 > **SOC Command Center** — Real-time threat detection, session revocation, and insurance tracking rendered as a military-grade security operations dashboard with animated hex grid, radar sweep, and live statistics.
+
+### Threat Detection & Interception
+
+| Exploit Detected | AegisGuard Interception | Session Revocation |
+|:---:|:---:|:---:|
+| https://github.com/user-attachments/assets/a8f972d6-bddb-4b44-87fe-449d0ec23be3 | https://github.com/user-attachments/assets/9829912e-ad30-4dee-a930-e94b59e1f9c1 | https://github.com/user-attachments/assets/821f4668-7788-447a-bdd4-f0a72df450f9 |
+| *Malicious contract upgrade attempt on InitiaYield* | *Sub-millisecond automated interception overlay* | *Immediate isolation and session suspension* |
+
+<details>
+<summary><strong>🎥 View More Dashboard Features (Click to expand)</strong></summary>
+
+| Live Event Timeline | SOC Overrides | Stealth Intercept |
+|:---:|:---:|:---:|
+| https://github.com/user-attachments/assets/463ef00f-e2d3-4a96-a9b4-d9b69a3fab8a | https://github.com/user-attachments/assets/d1189db8-501c-42f9-9c27-d8e9950f7938 | https://github.com/user-attachments/assets/a73e5765-92a5-452a-b465-577c656af3c2 |
+
+| Global Halt State | Hex Grid Ambience | Dashboard view |
+|:---:|:---:|:---:|
+| https://github.com/user-attachments/assets/9018d9fc-bfec-42df-a49c-0b2b8b85e76a | https://github.com/user-attachments/assets/34d21dc6-fb21-4ede-bf35-fa90ea1dd5a5 | https://github.com/user-attachments/assets/35ebd14a-b8bb-4529-bd37-ee94b90dcac1 |
+
+| Live Stats | Demo Load |
+|:---:|:---:|
+| https://github.com/user-attachments/assets/4e05bdfc-08d7-4099-b7b5-528c34da672e | https://github.com/user-attachments/assets/4eaa14e0-d9c7-4120-9868-8818e02ba2ab |
+</details>
 
 ---
 
@@ -59,7 +83,7 @@ DeFi exploits drained **$1.7B+ in 2025 alone**. Flash loan attacks, oracle manip
 
 ## 🏗️ Architecture & Tech Stack
 
-![Architecture](docs/architecture.png)
+![Architecture](docs/demo/architecture.png)
 
 | Layer | Technology |
 |---|---|
