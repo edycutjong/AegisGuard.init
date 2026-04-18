@@ -65,7 +65,7 @@ export default function SOCDashboard() {
           setRevenue(data.revenue || []);
           return;
         }
-      } catch (_err) {
+      } catch {
         console.warn("Backend unreachable. Falling back to Vercel Demo Mock Data.");
       }
       
