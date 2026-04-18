@@ -26,6 +26,7 @@
 
 <!-- Main Hero / Full Dashboard -->
 <img width="1024" height="576" alt="01_soc_load" src="https://github.com/user-attachments/assets/e7f0c069-dbee-443c-b2e5-e57e7fb97540" />
+
 > **SOC Command Center** — Real-time threat detection, session revocation, and insurance tracking rendered as a military-grade security operations dashboard with animated hex grid, radar sweep, and live statistics.
 
 ### Threat Detection & Interception
