@@ -22,6 +22,37 @@
 
 ---
 
+## Initia Hackathon Submission
+
+- **Project Name**: AegisGuard.init
+
+### Project Overview
+
+AegisGuard.init is an AI-powered security appchain that acts as a real-time firewall for auto-signed transactions on Initia. It intercepts malicious transaction patterns (drainers, bulk transfers, suspicious approvals) in under 100ms and auto-revokes compromised session keys before the next block confirms — protecting DeFi users, institutional treasuries, and dApp developers from silent wallet drains. It is the only security tool in the entire INITIATE hackathon ecosystem.
+
+### Implementation Detail
+
+- **The Custom Implementation**: A real-time AI threat scanner (Python FastAPI heuristic engine) that pattern-matches every auto-signed transaction against known exploit signatures. When a threat is detected, AegisGuard's Solidity smart contract (`AegisGuard.sol`) instantly revokes the compromised session key and logs the event to Supabase with real-time streaming to a military-grade SOC dashboard. Every protected transaction generates an "Insurance Gas Fee" — turning security into developer revenue and proving Initia's "revenue you keep" thesis.
+
+- **The Native Feature**: **Auto-signing** is the core mechanic of AegisGuard — without auto-signing, there's nothing to protect. AegisGuard registers every auto-sign session via InterwovenKit (`@initia/interwovenkit-react`), monitors all transactions passing through the session, and provides instant revocation when threats are detected. This transforms auto-signing from a potential attack vector into a safe, insured feature suitable for institutional adoption. Additionally, `.init` usernames are resolved and displayed across the SOC dashboard for all connected wallets.
+
+### How to Run Locally
+
+1. Clone and configure:
+   ```bash
+   git clone https://github.com/edycutjong/AegisGuard.init.git
+   cd AegisGuard.init
+   cp .env.example .env.local
+   ```
+2. Start the full stack with Docker (recommended):
+   ```bash
+   make up
+   ```
+3. Open [http://localhost:3000](http://localhost:3000) — the SOC dashboard is fully functional with mock threat data. No wallet or API keys required.
+4. To trigger a demo attack: navigate to the Demo page and click "Launch Attack" to see the real-time interception and session revocation.
+
+---
+
 ## 📸 See it in Action
 
 <!-- Main Hero / Full Dashboard -->
