@@ -10,9 +10,9 @@
     "edycutjong"
   ],
   "links": {
-    "github": "https://github.com/edycutjong/aegis-guard-init",
-    "video": "https://youtube.com/placeholder-demo",
-    "demo": "https://aegis-guard.vercel.app"
+    "github": "https://github.com/edycutjong/AegisGuard.init",
+    "video": "https://youtu.be/WCdrjs3XEic",
+    "demo": "https://aegisguard.edycu.dev"
   },
   "contracts": {
     "AegisGuard": "0x0000000000000000000000000000000000000000"
