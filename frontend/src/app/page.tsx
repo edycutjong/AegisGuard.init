@@ -157,8 +157,8 @@ export default function SOCDashboard() {
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none" />
 
       {/* Ambient corner glows */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-aegis-cyan/[0.03] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-ai-purple/[0.03] rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-aegis-cyan/3 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-ai-purple/3 rounded-full blur-[100px] pointer-events-none" />
       
       {/* Top Header */}
       <motion.header 
