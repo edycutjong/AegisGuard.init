@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import RootLayout, { metadata } from './layout';
 
 // Mock fonts since they error in JSDOM sometimes
@@ -8,13 +8,33 @@ jest.mock('next/font/google', () => ({
 }));
 
 describe('RootLayout', () => {
-  it('renders children', () => {
-    const { getByText } = render(
+  let consoleSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    // Suppress expected console.error logs to keep test output clean
+    // RTL wraps render in a <div>, and Next.js layout returns <html>, which triggers validateDOMNesting
+    consoleSpy = jest.spyOn(console, 'error').mockImplementation((...args) => {
+      const msg = args[0];
+      if (typeof msg === 'string' && (msg.includes('cannot be a child of') || msg.includes('hydration error'))) {
+        return;
+      }
+      consoleSpy.mockRestore();
+      console.error(...args);
+      consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    });
+  });
+
+  afterEach(() => {
+    consoleSpy.mockRestore();
+  });
+
+  it('renders children within the application shell', () => {
+    render(
       <RootLayout>
-        <div>Test Child</div>
+        <div data-testid="test-child">Child Content</div>
       </RootLayout>
     );
-    expect(getByText('Test Child')).toBeInTheDocument();
+    expect(screen.getByTestId('test-child')).toBeInTheDocument();
   });
 
   it('exports valid metadata', () => {

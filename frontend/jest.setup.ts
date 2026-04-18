@@ -129,61 +129,63 @@ if (typeof window !== "undefined") {
   window.Element.prototype.scrollIntoView = jest.fn();
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any, react/display-name, @typescript-eslint/no-unused-vars */
 jest.mock('framer-motion', () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   const dummyCustom = (Component: any) => Component;
   return {
     motion: {
       div: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('div', { ...rest, ref });
       }),
       span: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('span', { ...rest, ref });
       }),
       p: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('p', { ...rest, ref });
       }),
       h2: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('h2', { ...rest, ref });
       }),
       h3: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('h3', { ...rest, ref });
       }),
       svg: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('svg', { ...rest, ref });
       }),
       circle: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('circle', { ...rest, ref });
       }),
       rect: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('rect', { ...rest, ref });
       }),
       path: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('path', { ...rest, ref });
       }),
       button: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('button', { ...rest, ref });
       }),
       header: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('header', { ...rest, ref });
       }),
       main: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('main', { ...rest, ref });
       }),
       section: React.forwardRef((props: any, ref: any) => {
-        const { style, initial, animate, exit, transition, variants, ...rest } = props;
+        const { style, initial, animate, exit, transition, variants, layoutId, layout, ...rest } = props;
         return React.createElement('section', { ...rest, ref });
       }),
       custom: dummyCustom
@@ -193,3 +195,4 @@ jest.mock('framer-motion', () => {
     useInView: () => true
   };
 });
+/* eslint-enable @typescript-eslint/no-explicit-any, react/display-name, @typescript-eslint/no-unused-vars */
