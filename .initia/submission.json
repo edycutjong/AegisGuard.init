@@ -1,7 +1,7 @@
 {
   "project_name": "AegisGuard.init",
   "repo_url": "https://github.com/edycutjong/AegisGuard.init",
-  "commit_sha": "3ae711f9a5f222f7d37f97dccb2003ec903dd3c0",
+  "commit_sha": "4781aec0c728b06cea51ab56335666bb7d3091e4",
   "rollup_chain_id": "aegisguard-1",
   "deployed_address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
   "vm": "evm",
