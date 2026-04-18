@@ -5,6 +5,18 @@
 -- Enable UUID Extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+-- Mock Supabase roles for local Postgres deployment
+DO $$ 
+BEGIN 
+  IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'anon') THEN 
+    CREATE ROLE anon NOLOGIN; 
+  END IF; 
+  IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'service_role') THEN 
+    CREATE ROLE service_role NOLOGIN; 
+  END IF; 
+END 
+$$;
+
 -- Table: chains
 -- Purpose: Tracks monitored rollups/L2s integrated via InterwovenKit
 CREATE TABLE chains (

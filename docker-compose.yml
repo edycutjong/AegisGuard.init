@@ -1,4 +1,21 @@
 services:
+  db:
+    image: postgres:15-alpine
+    container_name: aegis_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: aegis
+    volumes:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d aegis"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   anvil:
     image: ghcr.io/foundry-rs/foundry:latest
     container_name: aegis_anvil
@@ -14,10 +31,15 @@ services:
       - "8000:8000"
     env_file:
       - .env.local
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgrespassword@db:5432/aegis
     volumes:
       - ./backend:/app
     depends_on:
-      - anvil
+      db:
+        condition: service_healthy
+      anvil:
+        condition: service_started
 
   frontend:
     build:
