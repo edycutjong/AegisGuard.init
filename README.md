@@ -25,7 +25,7 @@
 ## 📸 See it in Action
 
 <!-- Main Hero / Full Dashboard -->
-<img width="1024" height="576" alt="01_soc_load" src="https://github.com/user-attachments/assets/e7f0c069-dbee-443c-b2e5-e57e7fb97540" />
+<img width="100%" alt="01_soc_load" src="https://github.com/user-attachments/assets/e7f0c069-dbee-443c-b2e5-e57e7fb97540" />
 
 > **SOC Command Center** — Real-time threat detection, session revocation, and insurance tracking rendered as a military-grade security operations dashboard with animated hex grid, radar sweep, and live statistics.
 
@@ -33,23 +33,18 @@
 
 | Exploit Detected | AegisGuard Interception | Session Revocation |
 |:---:|:---:|:---:|
-| <img width="800" height="450" alt="10_demo_attack" src="https://github.com/user-attachments/assets/dea15867-8718-4043-a8d2-d8a6382c4d78" /> | <img width="800" height="450" alt="06_intercept" src="https://github.com/user-attachments/assets/9ca1475a-dc4a-4e2b-b2b1-b4ecca179a41" /> | <img width="1024" height="576" alt="03_sessions" src="https://github.com/user-attachments/assets/1a9387d8-aefe-4c66-9c13-8c31d8beee9d" /> |
+| <img width="100%" alt="10_demo_attack" src="https://github.com/user-attachments/assets/dea15867-8718-4043-a8d2-d8a6382c4d78" /> | <img width="100%" alt="06_intercept" src="https://github.com/user-attachments/assets/9ca1475a-dc4a-4e2b-b2b1-b4ecca179a41" /> | <img width="100%" alt="03_sessions" src="https://github.com/user-attachments/assets/1a9387d8-aefe-4c66-9c13-8c31d8beee9d" /> |
 | *Malicious contract upgrade attempt on InitiaYield* | *Sub-millisecond automated interception overlay* | *Immediate isolation and session suspension* |
 
 <details>
 <summary><strong>🎥 View More Dashboard Features (Click to expand)</strong></summary>
 
-| Live Event Timeline | SOC Overrides | Stealth Intercept |
-|:---:|:---:|:---:|
-| <img width="1024" height="576" alt="04_threats" src="https://github.com/user-attachments/assets/e78dfa9a-afa7-449c-890d-6028810393b4" /> | <img width="1024" height="576" alt="05_revenue" src="https://github.com/user-attachments/assets/ef453a79-364b-43ab-801b-5453c51e4fc2" /> | <img width="800" height="450" alt="07_stealth" src="https://github.com/user-attachments/assets/78d2bd41-f462-4421-bacf-f189e722449a" /> |
-
-| Global Halt State | Hex Grid Ambience | Dashboard view |
-|:---:|:---:|:---:|
-| <img width="1024" height="576" alt="08_halt" src="https://github.com/user-attachments/assets/fd3d5942-b934-499b-8483-5012b76e5b34" /> | <img width="1024" height="576" alt="11_hexgrid_bg" src="https://github.com/user-attachments/assets/54bdf72c-832e-400d-a35c-431105c2129b" /> | <img width="1024" height="576" alt="12_dashboard" src="https://github.com/user-attachments/assets/0c73603f-ad38-41fa-b270-0db1845f6740" /> |
-
-| Live Stats | Demo Load |
+| Feature Overview | Advanced Controls |
 |:---:|:---:|
-| <img width="1024" height="576" alt="02_livestats" src="https://github.com/user-attachments/assets/4a393d12-4c07-4447-8e85-2d7d8c4dc6fe" /> | <img width="1024" height="576" alt="09_demo_load" src="https://github.com/user-attachments/assets/6d7a357e-1fda-4172-93bc-161ac548358b" /> |
+| **Live Event Timeline**<br><img width="100%" alt="04_threats" src="https://github.com/user-attachments/assets/e78dfa9a-afa7-449c-890d-6028810393b4" /> | **SOC Overrides**<br><img width="100%" alt="05_revenue" src="https://github.com/user-attachments/assets/ef453a79-364b-43ab-801b-5453c51e4fc2" /> |
+| **Stealth Intercept**<br><img width="100%" alt="07_stealth" src="https://github.com/user-attachments/assets/78d2bd41-f462-4421-bacf-f189e722449a" /> | **Global Halt State**<br><img width="100%" alt="08_halt" src="https://github.com/user-attachments/assets/fd3d5942-b934-499b-8483-5012b76e5b34" /> |
+| **Hex Grid Ambience**<br><img width="100%" alt="11_hexgrid_bg" src="https://github.com/user-attachments/assets/54bdf72c-832e-400d-a35c-431105c2129b" /> | **Dashboard view**<br><img width="100%" alt="12_dashboard" src="https://github.com/user-attachments/assets/0c73603f-ad38-41fa-b270-0db1845f6740" /> |
+| **Live Stats**<br><img width="100%" alt="02_livestats" src="https://github.com/user-attachments/assets/4a393d12-4c07-4447-8e85-2d7d8c4dc6fe" /> | **Demo Load**<br><img width="100%" alt="09_demo_load" src="https://github.com/user-attachments/assets/6d7a357e-1fda-4172-93bc-161ac548358b" /> |
 </details>
 
 ---
