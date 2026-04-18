@@ -57,7 +57,7 @@ export default function SOCDashboard() {
     async function loadDashboard() {
       try {
         const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
-        const res = await fetch(`${backendUrl}/api/dashboard`, { signal: AbortSignal.timeout(1500) });
+        const res = await fetch(`${backendUrl}/api/dashboard`);
         if (res.ok) {
           const data = await res.json();
           setSessions(data.sessions || []);

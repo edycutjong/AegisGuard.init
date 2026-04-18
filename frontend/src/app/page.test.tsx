@@ -222,12 +222,12 @@ describe('Main Page', () => {
     // Override before each mock
     const fetchMock = global.fetch as jest.Mock;
     fetchMock.mockImplementationOnce(() => Promise.reject(new Error("Network fail")));
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const consoleSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
     
     render(<Page />);
     
     await waitFor(() => {
-      expect(consoleSpy).toHaveBeenCalledWith("Failed to load dashboard data", expect.any(Error));
+      expect(consoleSpy).toHaveBeenCalledWith("Backend unreachable. Falling back to Vercel Demo Mock Data.");
     });
     consoleSpy.mockRestore();
   });
