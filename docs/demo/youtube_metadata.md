@@ -26,6 +26,9 @@ Threats are analyzed via a FastAPI-powered local AI heuristic engine, allowing p
 - Blockchain: Foundry Anvil (Local Simulation)
 - Database: Local Postgres + Supabase Schema (RLS)
 
+🔗 Live Demo:
+https://aegisguard.edycu.dev
+
 🔗 GitHub Repository: 
 [Insert your GitHub link here]
 

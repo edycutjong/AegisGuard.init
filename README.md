@@ -4,7 +4,7 @@
 
   <br />
 
-  [![Live Demo](https://img.shields.io/badge/🔴_Live-Demo-06b6d4?style=for-the-badge)](https://aegisguard-init.vercel.app)
+  [![Live Demo](https://img.shields.io/badge/🔴_Live-Demo-06b6d4?style=for-the-badge)](https://aegisguard.edycu.dev)
   [![Pitch Video](https://img.shields.io/badge/🎬_Pitch-Video-ef4444?style=for-the-badge)](https://youtu.be/WCdrjs3XEic)
   [![DoraHacks](https://img.shields.io/badge/🏆_DoraHacks-Initia_2026-8b5cf6?style=for-the-badge)](https://dorahacks.io/buidl/placeholder)
 
