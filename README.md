@@ -5,7 +5,7 @@
   <br />
 
   [![Live Demo](https://img.shields.io/badge/🔴_Live-Demo-06b6d4?style=for-the-badge)](https://aegisguard-init.vercel.app)
-  [![Pitch Video](https://img.shields.io/badge/🎬_Pitch-Video-ef4444?style=for-the-badge)](https://youtube.com/placeholder-demo)
+  [![Pitch Video](https://img.shields.io/badge/🎬_Pitch-Video-ef4444?style=for-the-badge)](https://youtu.be/WCdrjs3XEic)
   [![DoraHacks](https://img.shields.io/badge/🏆_DoraHacks-Initia_2026-8b5cf6?style=for-the-badge)](https://dorahacks.io/buidl/placeholder)
 
   <br />
@@ -79,7 +79,7 @@ DeFi exploits drained **$1.7B+ in 2025 alone**. Flash loan attacks, oracle manip
 
 ## 🏗️ Architecture & Tech Stack
 
-![Architecture](docs/demo/architecture.png)
+![Architecture](docs/architecture.png)
 
 | Layer | Technology |
 |---|---|
