@@ -9,7 +9,7 @@ const mockThreats: Threat[] = [
     severity: 'CRITICAL',
     action: 'Draining Pool',
     targetUser: '0x11112222',
-    timestamp: new Date('2026-04-17T10:00:00Z').getTime()
+    timestamp: new Date('2026-04-17T10:00:00Z').toISOString()
   },
   {
     id: 't2',
@@ -17,7 +17,7 @@ const mockThreats: Threat[] = [
     severity: 'HIGH',
     action: 'Price feed skew',
     targetUser: '0x33334444',
-    timestamp: new Date('2026-04-17T11:00:00Z').getTime()
+    timestamp: new Date('2026-04-17T11:00:00Z').toISOString()
   },
   {
     id: 't3',
@@ -25,7 +25,7 @@ const mockThreats: Threat[] = [
     severity: 'MEDIUM',
     action: 'Recursive calls detected',
     targetUser: '0x55556666',
-    timestamp: new Date('2026-04-17T12:00:00Z').getTime()
+    timestamp: new Date('2026-04-17T12:00:00Z').toISOString()
   },
   {
     id: 't4',
@@ -33,7 +33,7 @@ const mockThreats: Threat[] = [
     severity: 'LOW',
     action: 'Suspicious anomaly',
     targetUser: '0x77778888',
-    timestamp: new Date('2026-04-17T13:00:00Z').getTime()
+    timestamp: new Date('2026-04-17T13:00:00Z').toISOString()
   }
 ];
 

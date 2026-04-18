@@ -8,7 +8,7 @@ const mockThreat: Threat = {
   severity: 'CRITICAL',
   action: 'Draining Liquidity Pool',
   targetUser: '0x1234...5678',
-  timestamp: new Date('2026-04-17T12:00:00Z').getTime()
+  timestamp: new Date('2026-04-17T12:00:00Z').toISOString()
 };
 
 describe('RedAlertOverlay', () => {

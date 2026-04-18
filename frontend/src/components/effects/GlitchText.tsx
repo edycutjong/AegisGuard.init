@@ -36,7 +36,7 @@ export default function GlitchText({
           setDisplay(
             text
               .split("")
-              .map((char, i) => {
+              .map((char) => {
                 /* istanbul ignore next */
                 if (char === " ") return " ";
                 if (Math.random() > 0.5 + iterations / maxIterations) {

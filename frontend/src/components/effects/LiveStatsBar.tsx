@@ -74,6 +74,8 @@ export default function LiveStatsBar() {
     };
   }, [handleIntersection]);
 
+  const [dataStream] = useState(() => Array.from({ length: 40 }, () => `0x${Math.random().toString(16).slice(2, 10)} `).join("│ "));
+
   return (
     <div
       ref={ref}
@@ -82,7 +84,7 @@ export default function LiveStatsBar() {
       {/* Scrolling data stream underneath */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none overflow-hidden">
         <div className="animate-marquee whitespace-nowrap font-mono text-[10px] text-aegis-cyan leading-none py-1">
-          {Array.from({ length: 40 }, (_, i) => `0x${Math.random().toString(16).slice(2, 10)} `).join("│ ")}
+          {dataStream}
         </div>
       </div>
 

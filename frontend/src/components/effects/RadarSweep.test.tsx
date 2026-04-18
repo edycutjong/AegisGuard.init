@@ -28,7 +28,8 @@ describe('RadarSweep', () => {
       closePath: jest.fn(),
       createConicGradient: jest.fn().mockReturnValue({ addColorStop: jest.fn() }),
       createRadialGradient: jest.fn().mockReturnValue({ addColorStop: jest.fn() }),
-    }) as unknown as CanvasRenderingContext2D);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    }) as any);
   });
 
   afterEach(() => {

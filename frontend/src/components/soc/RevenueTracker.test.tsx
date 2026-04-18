@@ -9,25 +9,27 @@ jest.mock('recharts', () => {
   const OriginalRecharts = jest.requireActual('recharts');
   return {
     ...OriginalRecharts,
-    ResponsiveContainer: ({ children }: any) => <div data-testid="responsive-container">{children}</div>,
-    LineChart: ({ children }: any) => <div data-testid="line-chart">{children}</div>,
+    ResponsiveContainer: ({ children }: { children: React.ReactNode }) => <div data-testid="responsive-container">{children}</div>,
+    LineChart: ({ children }: { children: React.ReactNode }) => <div data-testid="line-chart">{children}</div>,
     Line: () => <div data-testid="line" />,
     XAxis: () => <div data-testid="x-axis" />,
-    YAxis: ({ tickFormatter }: any) => {
+    YAxis: ({ tickFormatter }: { tickFormatter?: (val: number) => string }) => {
       // Cover the tickFormatter function
       if (tickFormatter) tickFormatter(100);
       return <div data-testid="y-axis" />;
     },
     CartesianGrid: () => <div data-testid="cartesian-grid" />,
-    Tooltip: ({ content }: any) => {
+    Tooltip: ({ content }: { content?: React.ReactNode }) => {
       // If content is a React element, clone it with props or if it's a function, call it
       return (
         <div data-testid="tooltip">
           {content && React.isValidElement(content) 
-            ? React.cloneElement(content as React.ReactElement, { active: true, payload: [{ value: 5.5 }], label: '10:00' })
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ? React.cloneElement(content as React.ReactElement<any>, { active: true, payload: [{ value: 5.5 }], label: '10:00' } as any)
             : null}
           {content && React.isValidElement(content) 
-            ? React.cloneElement(content as React.ReactElement, { active: false }) // cover inactive
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ? React.cloneElement(content as React.ReactElement<any>, { active: false } as any) // cover inactive
             : null}
         </div>
       );
@@ -36,8 +38,8 @@ jest.mock('recharts', () => {
 });
 
 const mockData: RevenueData[] = [
-  { time: '10:00', fees: 1.5, intercepts: 10 },
-  { time: '11:00', fees: 2.5, intercepts: 15 }
+  { time: '10:00', fees: 1.5 },
+  { time: '11:00', fees: 2.5 }
 ];
 
 describe('RevenueTracker', () => {

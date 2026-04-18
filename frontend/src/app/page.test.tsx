@@ -1,24 +1,28 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import Page from './page';
 
 // Mock child components to prevent canvas or recharts DOM issues
-jest.mock('@/components/soc/SessionMonitor', () => ({ onRevoke }: any) => (
-  <div data-testid="session-monitor">
-    <button data-testid="mock-revoke" onClick={() => onRevoke('session1')}>Revoke Session 1</button>
-  </div>
-));
-jest.mock('@/components/soc/ThreatTimeline', () => () => <div data-testid="threat-timeline" />);
-jest.mock('@/components/soc/RevenueTracker', () => () => <div data-testid="revenue-tracker" />);
-jest.mock('@/components/soc/RedAlertOverlay', () => ({ onDismiss }: any) => (
-  <div data-testid="red-alert-overlay">
-    <button data-testid="mock-dismiss" onClick={onDismiss}>Dismiss</button>
-  </div>
-));
-jest.mock('@/components/effects/HexGridCanvas', () => () => <div data-testid="hex-grid-canvas" />);
-jest.mock('@/components/effects/LiveStatsBar', () => () => <div data-testid="live-stats-bar" />);
-jest.mock('@/components/effects/RadarSweep', () => () => <div data-testid="radar-sweep" />);
-jest.mock('@/components/effects/GlitchText', () => ({ text }: any) => <span>{text}</span>);
-jest.mock('@/components/effects/StatusTicker', () => () => <div data-testid="status-ticker" />);
+jest.mock('@/components/soc/SessionMonitor', () => function MockSessionMonitor({ onRevoke }: { onRevoke: (id: string) => void }) {
+  return (
+    <div data-testid="session-monitor">
+      <button data-testid="mock-revoke" onClick={() => onRevoke('session1')}>Revoke Session 1</button>
+    </div>
+  );
+});
+jest.mock('@/components/soc/ThreatTimeline', () => function MockThreatTimeline() { return <div data-testid="threat-timeline" />; });
+jest.mock('@/components/soc/RevenueTracker', () => function MockRevenueTracker() { return <div data-testid="revenue-tracker" />; });
+jest.mock('@/components/soc/RedAlertOverlay', () => function MockRedAlertOverlay({ onDismiss }: { onDismiss: () => void }) {
+  return (
+    <div data-testid="red-alert-overlay">
+      <button data-testid="mock-dismiss" onClick={onDismiss}>Dismiss</button>
+    </div>
+  );
+});
+jest.mock('@/components/effects/HexGridCanvas', () => function MockHexGridCanvas() { return <div data-testid="hex-grid-canvas" />; });
+jest.mock('@/components/effects/LiveStatsBar', () => function MockLiveStatsBar() { return <div data-testid="live-stats-bar" />; });
+jest.mock('@/components/effects/RadarSweep', () => function MockRadarSweep() { return <div data-testid="radar-sweep" />; });
+jest.mock('@/components/effects/GlitchText', () => function MockGlitchText({ text }: { text: string }) { return <span>{text}</span>; });
+jest.mock('@/components/effects/StatusTicker', () => function MockStatusTicker() { return <div data-testid="status-ticker" />; });
 
 describe('Main Page', () => {
   beforeEach(() => {
@@ -98,10 +102,9 @@ describe('Main Page', () => {
       })
     );
 
-    const { getByText, getByRole, fireEvent } = require('@testing-library/react');
     const haltButton = screen.getByText('GLOBAL HALT (UNLOCK)');
     
-    require('@testing-library/react').fireEvent.click(haltButton);
+    fireEvent.click(haltButton);
     
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
@@ -127,7 +130,7 @@ describe('Main Page', () => {
     );
 
     const simulateBtn = screen.getByText('SIMULATE EXPLOIT');
-    require('@testing-library/react').fireEvent.click(simulateBtn);
+    fireEvent.click(simulateBtn);
     
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
@@ -150,7 +153,7 @@ describe('Main Page', () => {
       })
     );
     const simulateBtn = screen.getByText('SIMULATE EXPLOIT');
-    require('@testing-library/react').fireEvent.click(simulateBtn);
+    fireEvent.click(simulateBtn);
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('/api/scan'), expect.anything());
     });
@@ -169,7 +172,7 @@ describe('Main Page', () => {
       })
     );
     const simulateBtn = screen.getByText('SIMULATE EXPLOIT');
-    require('@testing-library/react').fireEvent.click(simulateBtn);
+    fireEvent.click(simulateBtn);
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('/api/scan'), expect.anything());
     });
@@ -182,7 +185,6 @@ describe('Main Page', () => {
       expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('/api/dashboard'));
     });
     
-    const { fireEvent } = require('@testing-library/react');
     // Wrong key
     fireEvent.keyDown(window, { metaKey: true, shiftKey: true, key: 'b' });
     // Correct combinations
@@ -205,9 +207,8 @@ describe('Main Page', () => {
       })
     );
 
-    const { getByTestId, fireEvent } = require('@testing-library/react');
     const revokeBtn = screen.getByTestId('mock-revoke');
-    require('@testing-library/react').fireEvent.click(revokeBtn);
+    fireEvent.click(revokeBtn);
     
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
@@ -242,9 +243,8 @@ describe('Main Page', () => {
     fetchMock.mockImplementationOnce(() => Promise.reject(new Error("API Down")));
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-    const { getByTestId, fireEvent } = require('@testing-library/react');
     const revokeBtn = screen.getByTestId('mock-revoke');
-    require('@testing-library/react').fireEvent.click(revokeBtn);
+    fireEvent.click(revokeBtn);
     
     await waitFor(() => {
       expect(consoleSpy).toHaveBeenCalledWith("Failed to revoke session", expect.any(Error));
@@ -263,9 +263,8 @@ describe('Main Page', () => {
     fetchMock.mockImplementationOnce(() => Promise.reject(new Error("API Down")));
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-    const { getByText, fireEvent } = require('@testing-library/react');
     const haltButton = screen.getByText('GLOBAL HALT (UNLOCK)');
-    require('@testing-library/react').fireEvent.click(haltButton);
+    fireEvent.click(haltButton);
     
     await waitFor(() => {
       expect(consoleSpy).toHaveBeenCalledWith("Failed to global halt", expect.any(Error));
@@ -285,7 +284,7 @@ describe('Main Page', () => {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     const simulateBtn = screen.getByText('SIMULATE EXPLOIT');
-    require('@testing-library/react').fireEvent.click(simulateBtn);
+    fireEvent.click(simulateBtn);
     
     await waitFor(() => {
       expect(consoleSpy).toHaveBeenCalledWith("Backend unreachable", expect.any(Error));
@@ -308,7 +307,6 @@ describe('Main Page', () => {
       })
     );
 
-    const { getByText, getByTestId, fireEvent } = require('@testing-library/react');
     const simulateBtn = screen.getByText('SIMULATE EXPLOIT');
     fireEvent.click(simulateBtn);
     

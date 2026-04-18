@@ -1,4 +1,4 @@
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { render, screen, waitFor, act, fireEvent } from '@testing-library/react';
 import DemoPage from './page';
 
 import * as interwoven from '@initia/interwovenkit-react';
@@ -8,11 +8,13 @@ jest.mock('@initia/interwovenkit-react', () => ({
   useAddress: jest.fn(() => '0xUserAddress')
 }));
 
-jest.mock('@/components/soc/RedAlertOverlay', () => ({ onDismiss }: any) => (
-  <div data-testid="red-alert-overlay">
-    <button data-testid="mock-dismiss" onClick={onDismiss}>Dismiss</button>
-  </div>
-));
+jest.mock('@/components/soc/RedAlertOverlay', () => function MockRedAlertOverlay({ onDismiss }: { onDismiss: () => void }) {
+  return (
+    <div data-testid="red-alert-overlay">
+      <button data-testid="mock-dismiss" onClick={onDismiss}>Dismiss</button>
+    </div>
+  );
+});
 
 describe('Demo Page', () => {
   beforeEach(() => {
@@ -49,13 +51,13 @@ describe('Demo Page', () => {
   it('handles stake process', () => {
     render(<DemoPage />);
     const maxBtn = screen.getByText('MAX');
-    require('@testing-library/react').fireEvent.click(maxBtn);
+    fireEvent.click(maxBtn);
 
     const stakeInput = screen.getByDisplayValue('1000');
-    require('@testing-library/react').fireEvent.change(stakeInput, { target: { value: '500' } });
+    fireEvent.change(stakeInput, { target: { value: '500' } });
 
     const stakeBtn = screen.getByText('Approve & Stake INIT');
-    require('@testing-library/react').fireEvent.click(stakeBtn);
+    fireEvent.click(stakeBtn);
     
     act(() => {
       jest.advanceTimersByTime(2000);
@@ -68,7 +70,7 @@ describe('Demo Page', () => {
     render(<DemoPage />);
     
     const attackBtn = screen.getByText('Simulate Malicious Contract Upgrade');
-    require('@testing-library/react').fireEvent.click(attackBtn);
+    fireEvent.click(attackBtn);
     
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
@@ -78,7 +80,7 @@ describe('Demo Page', () => {
     });
 
     const dismissBtn = screen.getByTestId('mock-dismiss');
-    require('@testing-library/react').fireEvent.click(dismissBtn);
+    fireEvent.click(dismissBtn);
   });
 
   it('handles simulate attack error fallback', async () => {
@@ -88,7 +90,7 @@ describe('Demo Page', () => {
     render(<DemoPage />);
     
     const attackBtn = screen.getByText('Simulate Malicious Contract Upgrade');
-    require('@testing-library/react').fireEvent.click(attackBtn);
+    fireEvent.click(attackBtn);
 
     // wait for error
     await waitFor(() => {
@@ -105,7 +107,7 @@ describe('Demo Page', () => {
     expect(screen.getByText('0x82A..3F1')).toBeInTheDocument();
 
     const attackBtn = screen.getByText('Simulate Malicious Contract Upgrade');
-    require('@testing-library/react').fireEvent.click(attackBtn);
+    fireEvent.click(attackBtn);
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
@@ -126,7 +128,7 @@ describe('Demo Page', () => {
     expect(screen.getByText('0x82A..3F1')).toBeInTheDocument();
 
     const attackBtn = screen.getByText('Simulate Malicious Contract Upgrade');
-    require('@testing-library/react').fireEvent.click(attackBtn);
+    fireEvent.click(attackBtn);
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(

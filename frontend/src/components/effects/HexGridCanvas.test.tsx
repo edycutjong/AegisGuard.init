@@ -25,7 +25,8 @@ describe('HexGridCanvas', () => {
       createRadialGradient: jest.fn().mockReturnValue({ addColorStop: jest.fn() }),
       arc: jest.fn(),
       fill: jest.fn(),
-    }) as unknown as CanvasRenderingContext2D);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    }) as any);
     
     // Polyfill getBoundingClientRect for canvas
     HTMLCanvasElement.prototype.getBoundingClientRect = () => ({

@@ -9,7 +9,8 @@ const mockSessions: Session[] = [
     status: 'SAFE',
     timeRemaining: 180,
     txCount: 5,
-    dappName: 'Initia DEX'
+    dappName: 'Initia DEX',
+    startTime: Date.now()
   },
   {
     id: 's2',
@@ -17,7 +18,8 @@ const mockSessions: Session[] = [
     status: 'SUSPICIOUS',
     timeRemaining: 60,
     txCount: 12,
-    dappName: 'Unknown Contract'
+    dappName: 'Unknown Contract',
+    startTime: Date.now()
   },
   {
     id: 's3',
@@ -25,7 +27,8 @@ const mockSessions: Session[] = [
     status: 'REVOKED',
     timeRemaining: 0,
     txCount: 2,
-    dappName: 'Bad Game'
+    dappName: 'Bad Game',
+    startTime: Date.now()
   }
 ];
 

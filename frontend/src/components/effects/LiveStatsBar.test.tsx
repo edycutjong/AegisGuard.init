@@ -10,11 +10,20 @@ describe('LiveStatsBar', () => {
     mockObserve = jest.fn();
     mockUnobserve = jest.fn();
     
+    let simulatedTime = 0;
+    global.requestAnimationFrame = jest.fn((cb) => {
+      return setTimeout(() => {
+        simulatedTime += 16;
+        cb(simulatedTime);
+      }, 16) as unknown as number;
+    });
+    global.cancelAnimationFrame = jest.fn((id) => clearTimeout(id));
+    
     // Mock intersection observer
     global.IntersectionObserver = jest.fn().mockImplementation((callback) => {
       // Expose a way to trigger it manually via window variable for tests if needed, 
       // but here we can just capture the callback and call it
-      (global as any).triggerIntersection = () => callback([{ isIntersecting: true }]);
+      (global as typeof globalThis & { triggerIntersection?: () => void }).triggerIntersection = () => callback([{ isIntersecting: true } as unknown as IntersectionObserverEntry], {} as IntersectionObserver);
       return {
         observe: mockObserve,
         unobserve: mockUnobserve,
@@ -26,7 +35,7 @@ describe('LiveStatsBar', () => {
   afterEach(() => {
     jest.useRealTimers();
     jest.clearAllMocks();
-    delete (global as any).triggerIntersection;
+    delete (global as typeof globalThis & { triggerIntersection?: () => void }).triggerIntersection;
   });
 
   it('renders initial state with dashes', () => {
@@ -43,7 +52,7 @@ describe('LiveStatsBar', () => {
     
     act(() => {
       // Trigger intersection
-      (global as any).triggerIntersection();
+      (global as typeof globalThis & { triggerIntersection?: () => void }).triggerIntersection?.();
     });
 
     // Animate some time so AnimatedCounter renders values
@@ -51,7 +60,7 @@ describe('LiveStatsBar', () => {
       jest.advanceTimersByTime(3000);
     });
 
-    expect(screen.queryByText('—')).not.toBeInTheDocument();
+    expect(screen.queryAllByText('—')).toHaveLength(0);
     // It should reach target value 284719, so look for a string containing "284,719"
     expect(screen.getByText(/284,719/)).toBeInTheDocument();
     expect(screen.getByText(/1,437/)).toBeInTheDocument();

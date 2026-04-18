@@ -8,4 +8,5 @@ export const Geist_Mono = () => ({
   variable: "--font-geist-mono",
   style: { fontFamily: "mock-geist-mono" },
 });
-export default {};
+const nextFontMock = {};
+export default nextFontMock;

@@ -45,9 +45,8 @@ describe('supabase', () => {
 
   it('fetchRecentAlerts should return recent alerts', async () => {
     // Re-mock the order function specifically to resolve with limit for fetchRecentAlerts
-    const { supabase } = require('./supabase');
     const qb = supabase.from('alerts').select();
-    qb.order.mockImplementationOnce(() => ({
+    (qb.order as jest.Mock).mockImplementationOnce(() => ({
       limit: jest.fn().mockResolvedValue({ data: [{ id: 'alert1' }], error: null })
     }));
     
@@ -56,10 +55,9 @@ describe('supabase', () => {
   });
 
   it('fetchRecentAlerts should use default limit if not provided', async () => {
-    const { supabase } = require('./supabase');
     const qb = supabase.from('alerts').select();
     const mockLimit = jest.fn().mockResolvedValue({ data: [{ id: 'alert2' }], error: null });
-    qb.order.mockImplementationOnce(() => ({
+    (qb.order as jest.Mock).mockImplementationOnce(() => ({
       limit: mockLimit
     }));
     
