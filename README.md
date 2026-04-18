@@ -25,14 +25,14 @@
 ## 📸 See it in Action
 
 <!-- Main Hero / Full Dashboard -->
-https://github.com/user-attachments/assets/1fdccf92-7eb7-43f7-bd02-5f8ece7f14e8
+<img width="1024" height="576" alt="01_soc_load" src="https://github.com/user-attachments/assets/e7f0c069-dbee-443c-b2e5-e57e7fb97540" />
 > **SOC Command Center** — Real-time threat detection, session revocation, and insurance tracking rendered as a military-grade security operations dashboard with animated hex grid, radar sweep, and live statistics.
 
 ### Threat Detection & Interception
 
 | Exploit Detected | AegisGuard Interception | Session Revocation |
 |:---:|:---:|:---:|
-| https://github.com/user-attachments/assets/a8f972d6-bddb-4b44-87fe-449d0ec23be3 | https://github.com/user-attachments/assets/9829912e-ad30-4dee-a930-e94b59e1f9c1 | https://github.com/user-attachments/assets/821f4668-7788-447a-bdd4-f0a72df450f9 |
+| <img width="800" height="450" alt="10_demo_attack" src="https://github.com/user-attachments/assets/dea15867-8718-4043-a8d2-d8a6382c4d78" /> | <img width="800" height="450" alt="06_intercept" src="https://github.com/user-attachments/assets/9ca1475a-dc4a-4e2b-b2b1-b4ecca179a41" /> | <img width="1024" height="576" alt="03_sessions" src="https://github.com/user-attachments/assets/1a9387d8-aefe-4c66-9c13-8c31d8beee9d" /> |
 | *Malicious contract upgrade attempt on InitiaYield* | *Sub-millisecond automated interception overlay* | *Immediate isolation and session suspension* |
 
 <details>
@@ -40,15 +40,15 @@ https://github.com/user-attachments/assets/1fdccf92-7eb7-43f7-bd02-5f8ece7f14e8
 
 | Live Event Timeline | SOC Overrides | Stealth Intercept |
 |:---:|:---:|:---:|
-| https://github.com/user-attachments/assets/463ef00f-e2d3-4a96-a9b4-d9b69a3fab8a | https://github.com/user-attachments/assets/d1189db8-501c-42f9-9c27-d8e9950f7938 | https://github.com/user-attachments/assets/a73e5765-92a5-452a-b465-577c656af3c2 |
+| <img width="1024" height="576" alt="04_threats" src="https://github.com/user-attachments/assets/e78dfa9a-afa7-449c-890d-6028810393b4" /> | <img width="1024" height="576" alt="05_revenue" src="https://github.com/user-attachments/assets/ef453a79-364b-43ab-801b-5453c51e4fc2" /> | <img width="800" height="450" alt="07_stealth" src="https://github.com/user-attachments/assets/78d2bd41-f462-4421-bacf-f189e722449a" /> |
 
 | Global Halt State | Hex Grid Ambience | Dashboard view |
 |:---:|:---:|:---:|
-| https://github.com/user-attachments/assets/9018d9fc-bfec-42df-a49c-0b2b8b85e76a | https://github.com/user-attachments/assets/34d21dc6-fb21-4ede-bf35-fa90ea1dd5a5 | https://github.com/user-attachments/assets/35ebd14a-b8bb-4529-bd37-ee94b90dcac1 |
+| <img width="1024" height="576" alt="08_halt" src="https://github.com/user-attachments/assets/fd3d5942-b934-499b-8483-5012b76e5b34" /> | <img width="1024" height="576" alt="11_hexgrid_bg" src="https://github.com/user-attachments/assets/54bdf72c-832e-400d-a35c-431105c2129b" /> | <img width="1024" height="576" alt="12_dashboard" src="https://github.com/user-attachments/assets/0c73603f-ad38-41fa-b270-0db1845f6740" /> |
 
 | Live Stats | Demo Load |
 |:---:|:---:|
-| https://github.com/user-attachments/assets/4e05bdfc-08d7-4099-b7b5-528c34da672e | https://github.com/user-attachments/assets/4eaa14e0-d9c7-4120-9868-8818e02ba2ab |
+| <img width="1024" height="576" alt="02_livestats" src="https://github.com/user-attachments/assets/4a393d12-4c07-4447-8e85-2d7d8c4dc6fe" /> | <img width="1024" height="576" alt="09_demo_load" src="https://github.com/user-attachments/assets/6d7a357e-1fda-4172-93bc-161ac548358b" /> |
 </details>
 
 ---
